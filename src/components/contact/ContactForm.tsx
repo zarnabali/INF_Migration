@@ -1,7 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/lib/supabase';
+import SendIcon from '@mui/icons-material/Send';
+
+declare global {
+    interface Window {
+        grecaptcha: any;
+    }
+}
+
+// Helper to check if all fields are filled
+const isFormValid = (formData: any, recaptchaVerified: boolean) => {
+    return (
+        formData.firstName.trim() !== '' &&
+        formData.lastName.trim() !== '' &&
+        formData.phone.trim() !== '' &&
+        formData.email.trim() !== '' &&
+        formData.message.trim() !== '' &&
+        recaptchaVerified
+    );
+};
 
 export const ContactFormComponent = () => {
     const [formData, setFormData] = useState({
@@ -16,12 +35,71 @@ export const ContactFormComponent = () => {
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [error, setError] = useState('');
 
+    // ReCAPTCHA state
+    const [recaptchaVerified, setRecaptchaVerified] = useState(false);
+    const [recaptchaToken, setRecaptchaToken] = useState('');
+    const recaptchaWidgetId = useRef<number | null>(null);
+
+    const siteKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Public key from Vue project
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // Load ReCAPTCHA script
+    useEffect(() => {
+        const loadScript = () => {
+            if (window.grecaptcha) {
+                renderRecaptcha();
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
+            script.async = true;
+            script.defer = true;
+            script.onload = renderRecaptcha;
+            document.head.appendChild(script);
+        };
+
+        const renderRecaptcha = () => {
+            if (!window.grecaptcha || recaptchaWidgetId.current !== null) return;
+
+            window.grecaptcha.ready(() => {
+                try {
+                    const widgetId = window.grecaptcha.render('recaptcha-container', {
+                        sitekey: siteKey,
+                        callback: (token: string) => {
+                            setRecaptchaToken(token);
+                            setRecaptchaVerified(true);
+                        },
+                        'expired-callback': () => {
+                            setRecaptchaToken('');
+                            setRecaptchaVerified(false);
+                        },
+                        theme: 'light',
+                    });
+                    recaptchaWidgetId.current = widgetId;
+                } catch (e) {
+                    console.error('ReCAPTCHA render error:', e);
+                }
+            });
+        };
+
+        loadScript();
+
+        // Cleanup function isn't straightforward with global grecaptcha, 
+        // but we can ensure we don't try to re-render needlessly
+    }, []);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (!isFormValid(formData, recaptchaVerified)) {
+            setError('Please fill in all fields and verify you are not a robot.');
+            return;
+        }
+
         setLoading(true);
         setError('');
         setSubmitSuccess(false);
@@ -29,7 +107,7 @@ export const ContactFormComponent = () => {
         try {
             const { error: supabaseError } = await supabase
                 .from('contact_submissions' as any)
-                .insert([formData]);
+                .insert([{ ...formData, recaptcha_token: recaptchaToken }]);
 
             if (supabaseError) throw supabaseError;
 
@@ -42,12 +120,20 @@ export const ContactFormComponent = () => {
                 enquiryType: 'General Enquiry',
                 message: '',
             });
+            setRecaptchaVerified(false);
+            setRecaptchaToken('');
+            if (window.grecaptcha && recaptchaWidgetId.current !== null) {
+                window.grecaptcha.reset(recaptchaWidgetId.current);
+            }
+
         } catch (err) {
             setError('Failed to submit form. Please try again.');
         } finally {
             setLoading(false);
         }
     };
+
+    const canSubmit = isFormValid(formData, recaptchaVerified);
 
     return (
         <div className="pt-3 pb-14">
@@ -163,12 +249,17 @@ export const ContactFormComponent = () => {
                                     </div>
 
                                     <div className="w-full px-2 mt-3">
-                                        <div className="flex justify-end">
+                                        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                                            {/* ReCAPTCHA Container */}
+                                            <div id="recaptcha-container" className="recaptcha-wrapper"></div>
+
                                             <button
                                                 type="submit"
-                                                disabled={loading}
-                                                className="px-8 py-3 send-btn font-semibold transition-all disabled:opacity-50"
+                                                disabled={!canSubmit || loading}
+                                                className={`px-8 py-3 send-btn font-semibold transition-all flex items-center gap-2 ${(!canSubmit || loading) ? 'opacity-50 cursor-not-allowed grayscale' : ''
+                                                    }`}
                                             >
+                                                <SendIcon fontSize="small" />
                                                 {loading ? 'Sending...' : 'Send'}
                                             </button>
                                         </div>
@@ -209,6 +300,12 @@ export const ContactFormComponent = () => {
 
                 .send-btn:active:not(:disabled) {
                     transform: translateY(-1px) scale(1.01);
+                }
+                
+                .recaptcha-wrapper {
+                    border-radius: 4px;
+                    overflow: hidden;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
                 }
             `}</style>
         </div>

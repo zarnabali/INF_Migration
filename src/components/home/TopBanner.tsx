@@ -36,10 +36,10 @@ export function TopBanner() {
                 className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
               >
-                <h1 className="mb-6 mt-0 text-[32px] text-white font-medium leading-[1.2] sm:text-[42px] md:text-[56px]">
+                <h1 className="mb-6 mt-0 text-[32px] text-white font-medium leading-[1.2] sm:text-[42px] md:text-[58px]">
                   Travel with Confidence.
                   <br />
-                  Protection for Life&apos;s Unexpected Journeys.
+                  Protection for Life&apos;s  Unexpected Journeys.
                 </h1>
 
                 <button

@@ -14,7 +14,7 @@ export const TopBannerContact = ({ title, image }: TopBannerContactProps) => {
                     <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-8 items-center h-full">
                         {/* Text Column - Left Aligned */}
                         <div className="flex items-center justify-start mb-8 lg:mb-0">
-                            <h1 className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.2] font-medium text-[#3A4752]">
+                            <h1 className="text-[40px] md:text-[56px] lg:text-[56px] leading-[1.2] font-medium text-[#3A4752]">
                                 <b className="font-normal">{title}</b>
                             </h1>
                         </div>
