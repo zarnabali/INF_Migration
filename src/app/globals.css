@@ -1,0 +1,587 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Givonic Variable Font */
+@font-face {
+  font-family: 'Givonic';
+  src: url('/fonts/Givonic_Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS Variables matching Vue.js Vuetify BLUE_THEME */
+:root {
+  /* Primary Colors - BLUE_THEME from Vue.js */
+  --primary-color: #0078FC;
+  --primary-light: #EDF5FD;
+  --primary-dark: #0056b3;
+
+  /* Secondary Colors */
+  --secondary-color: #43CED7;
+  --secondary-light: #F2FCFC;
+
+  /* Status Colors */
+  --success-color: #2CD07E;
+  --success-light: #EDFDF2;
+  --error-color: #F8285A;
+  --error-light: #FFF0F4;
+  --warning-color: #F6C000;
+  --warning-light: #FFFCF0;
+  --info-color: #2CABE3;
+  --info-light: #E4F5FF;
+
+  /* Accent Colors */
+  --accent-color: #FFAB91;
+  --purple-color: #725AF2;
+  --indigo-color: #6610f2;
+  --darkgreen-color: #005047;
+
+  /* Text Colors - Matching Vue.js theme */
+  --text-primary: #3A4752;
+  --text-secondary: #768B9E;
+
+  /* Background Colors */
+  --background-default: #eef5f9;
+  --background-paper: #ffffff;
+  --container-bg: #ffffff;
+  --surface-color: #ffffff;
+  --hover-color: #f6f9fc;
+
+  /* Border Colors */
+  --border-color: #ebf1f6;
+  --input-border: #DFE5EF;
+
+  /* Grey Variants */
+  --grey-100: #F2F6FA;
+  --grey-200: #EAEFF4;
+
+  /* Border Radius - Matching Vue.js $border-radius-root: 10px */
+  --border-radius: 10px;
+  --border-radius-sm: 5px;
+  --border-radius-lg: 20px;
+
+  /* Box Shadow - Matching Vue.js $box-shadow */
+  --box-shadow: rgba(145, 158, 171, 0.3) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Font family */
+  --font-family: var(--font-lato), sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: auto;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-family);
+  font-size: 16px;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--background-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Override headings - Matching Vue.js _override.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6,
+.display-1,
+.display-2,
+.display-3 {
+  font-family: 'Givonic', sans-serif !important;
+  color: #005047;
+}
+
+/* Typography - Matching Vue.js Vuetify typography settings */
+h1 {
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 2.75rem;
+  font-family: inherit;
+}
+
+h2 {
+  font-size: 1.875rem;
+  font-weight: 500;
+  line-height: 2.25rem;
+  font-family: inherit;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 2rem;
+  font-family: inherit;
+}
+
+h4 {
+  font-size: 1.3125rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  font-family: inherit;
+}
+
+h5 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  font-family: inherit;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2rem;
+  font-family: inherit;
+}
+
+/* Max Width Container - Matching Vue.js .maxWidth */
+.maxWidth {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Max Width 1400 - Used by TopBanner and other front pages */
+.max-width-1400 {
+  max-width: 1400px !important;
+}
+
+/* Page Wrapper - Matching Vue.js layout styles */
+.page-wrapper {
+  min-height: calc(100vh - 100px);
+  padding: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .page-wrapper {
+    padding: 20px 10px;
+  }
+}
+
+/* Front Wrapper - Matching Vue.js .front-wraper */
+.front-wraper {
+  overflow: hidden;
+}
+
+/* Section spacing - Matching Vue.js */
+.space-p-96 {
+  padding: 96px 0;
+}
+
+.pt-96 {
+  padding-top: 96px;
+}
+
+@media screen and (max-width: 1199px) {
+  .space-p-96 {
+    padding: 55px 0 !important;
+  }
+
+  .pt-96 {
+    padding-top: 55px !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .space-p-96 {
+    padding: 40px 0 !important;
+  }
+
+  .pt-96 {
+    padding-top: 40px !important;
+  }
+}
+
+/* Text sizes - Matching Vue.js display text */
+.text-56 {
+  font-size: 56px;
+  line-height: 1.2;
+}
+
+.text-48 {
+  font-size: 48px;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 767px) {
+  .text-56 {
+    font-size: 35px !important;
+    line-height: 40px !important;
+  }
+
+  .text-48 {
+    font-size: 30px !important;
+    line-height: 40px !important;
+  }
+}
+
+/* Card Styles - Matching Vuetify $card settings */
+.card {
+  background: var(--background-paper);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 24px 24px 0;
+  line-height: 1.6;
+}
+
+.card-text {
+  padding: 24px;
+}
+
+/* Button styles - Matching Vuetify button settings */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0;
+  height: 40px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 120, 252, 0.3);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+/* Front Dark - Footer background */
+.front-dark {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Sticky Header - Matching Vue.js frosted glass effect */
+.sticky-header {
+  position: fixed !important;
+  top: 0 !important;
+  transition: 0.5s;
+  background-color: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 29px -11px #3a4b7424 !important;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 0.875rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 120, 252, 0.1);
+}
+
+/* Animation utilities - Matching Vue.js animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide animations - From Vue.js front/_general.scss */
+@keyframes slideup {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0px, -100%, 0px);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    transform: translate3d(0px, 0, 0px);
+  }
+}
+
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Loading states */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Status Badge Colors */
+.badge-success {
+  background-color: var(--success-light);
+  color: #0d6832;
+}
+
+.badge-error {
+  background-color: var(--error-light);
+  color: #c41d4e;
+}
+
+.badge-warning {
+  background-color: var(--warning-light);
+  color: #9a7500;
+}
+
+.badge-info {
+  background-color: var(--info-light);
+  color: #0875a8;
+}
+
+.badge-pending {
+  background-color: #FEF5E5;
+  color: #9a7500;
+}
+
+/* Table Styles */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background-color: var(--grey-100);
+  font-weight: 500;
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table tr:hover {
+  background-color: var(--hover-color);
+}
+
+/* Light Primary Background */
+.light-primary {
+  background-color: rgba(0, 120, 252, 0.1);
+}
+
+/* Responsive utilities */
+@media (max-width: 1279px) {
+  .v-main {
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+/* Cursor utility */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Text alignment */
+.text-align-start {
+  text-align: start;
+}
+
+@media screen and (max-width: 991px) {
+  .text-align-start {
+    text-align: center;
+  }
+}
+
+/* Navigation link styles - Matching Vue.js .nav-links */
+.nav-links {
+  font-size: 1rem !important;
+}
+
+.nav-links:hover {
+  color: var(--primary-color) !important;
+}
+
+/* MUI Overrides to match Vuetify styling */
+.MuiButton-containedPrimary {
+  background-color: var(--primary-color) !important;
+  border-radius: var(--border-radius) !important;
+}
+
+.MuiButton-containedPrimary:hover {
+  background-color: var(--primary-dark) !important;
+}
+
+.MuiCard-root {
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--box-shadow) !important;
+  background-color: var(--surface-color) !important;
+}
+
+.MuiPaper-root {
+  border-radius: var(--border-radius) !important;
+}
+
+/* Ensure containers don't add extra padding */
+.MuiContainer-root {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+@media (min-width: 600px) {
+  .MuiContainer-root {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* Footer link hover styling */
+.footer-link-hover {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-link-hover:hover {
+  color: #fae2d4 !important;
+  text-shadow: 0 0 8px rgba(250, 226, 212, 0.3);
+}

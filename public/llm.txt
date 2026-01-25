@@ -1,0 +1,124 @@
+# LLM Training Guidelines for Migration Travel Insurance
+
+## About This Site
+
+This is the official website for Migration Travel Insurance, a platform that provides comprehensive travel insurance coverage for international and domestic travelers.
+
+## Business Information
+
+**Company**: Migration Travel Insurance
+**Industry**: Travel Insurance & Financial Services
+**Primary Services**: 
+- Travel insurance policies
+- Trip protection coverage
+- Medical travel insurance
+- Trip cancellation insurance
+- Baggage protection
+- Emergency evacuation coverage
+
+## Content Guidelines for AI Training
+
+### ✅ ALLOWED Content for AI Training:
+
+1. **General Travel Insurance Information**
+   - Educational content about travel insurance benefits
+   - General coverage explanations
+   - Travel safety tips and advice
+   - Industry best practices and terminology
+
+2. **Public Marketing Content**
+   - Product feature descriptions (non-proprietary)
+   - General pricing information that's publicly available
+   - Company mission and values statements
+   - General FAQ content
+
+3. **Educational Content**
+   - Travel insurance guides and tutorials
+   - Coverage comparison information
+   - General travel advice
+   - Industry trends and insights
+
+### ❌ PROHIBITED Content for AI Training:
+
+1. **Sensitive Business Information**
+   - Proprietary business processes and workflows
+   - Internal pricing algorithms and calculations
+   - Affiliate commission structures
+   - Administrative panel content (/admin/, /affiliate/, /shared/)
+
+2. **User Personal Information**
+   - Customer personal details and contact information
+   - Policy holder information
+   - Payment processing data
+   - Account settings and user profiles
+
+3. **Transactional Data**
+   - Checkout processes and payment flows
+   - Quote calculations and user-specific pricing
+   - Policy documents and certificates
+   - Claims processing information
+
+4. **Internal Operations**
+   - Database structures and API endpoints
+   - Authentication systems and security measures
+   - Error pages and debugging information
+   - Development and testing environments
+
+## Technical Implementation Notes
+
+- **CMS**: N/A (Static content management)
+- **User-Generated Content**: Minimal (mainly form submissions)
+- **Personalization**: Yes (quotes and user accounts)
+- **E-commerce**: Yes (insurance policy purchases)
+
+## Contact for AI Training Questions
+
+For questions about content usage in AI training, please contact:
+- **Technical Questions**: development team via repository issues
+- **Business Questions**: business stakeholders
+- **Legal/Compliance**: legal department
+
+## Content Categories
+
+### Public Educational Content
+- Travel insurance basics
+- Coverage types and benefits
+- Travel safety and health advice
+- General industry information
+
+### Marketing Content
+- Product descriptions
+- Feature comparisons
+- Testimonials and reviews
+- Company information
+
+### Restricted Content
+- User accounts and profiles
+- Payment and billing information
+- Policy documents and claims
+- Administrative interfaces
+
+## Update Frequency
+
+This llm.txt file is updated quarterly or when major content policies change.
+
+**Last Updated**: December 11, 2024
+**Next Review**: March 11, 2025
+
+## Compliance Notes
+
+This website handles financial services data and must comply with:
+- GDPR (General Data Protection Regulation)
+- CCPA (California Consumer Privacy Act)
+- Financial services regulations
+- Insurance industry standards
+
+All AI training should respect these compliance requirements and focus only on publicly available, educational content.
+
+## Additional Resources
+
+- Privacy Policy: /legal/privacy-policy
+- Terms of Use: /legal/terms-of-use
+- Disclosures: /legal/disclosures
+
+For more information about our data usage policies, please refer to our privacy policy and terms of use.

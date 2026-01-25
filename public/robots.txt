@@ -1,0 +1,69 @@
+# Migration Travel Insurance - Robots.txt
+# This file controls how search engines crawl and index our site
+
+User-agent: *
+Allow: /
+
+# Block admin and sensitive areas
+Disallow: /admin/
+Disallow: /affiliate/
+Disallow: /shared/
+Disallow: /account-settings/
+
+# Block user-specific and transactional pages
+Disallow: /checkout/
+Disallow: /payment/
+Disallow: /thankyou/
+Disallow: /payment-failed/
+
+# Block API endpoints and internal routes
+Disallow: /api/
+Disallow: /_*
+
+# Block test and development files
+Disallow: /test/
+Disallow: /dev/
+
+# Allow important public pages
+Allow: /
+Allow: /pricing
+Allow: /about
+Allow: /contact
+Allow: /locate-coverage
+Allow: /legal/
+Allow: /programs/
+
+# Sitemap location
+Sitemap: https://migration.io/sitemap.xml
+
+# Crawl-delay for respectful crawling (in seconds)
+Crawl-delay: 1
+
+# Block common bots that don't add value
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot  
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Allow Google and Bing full access to public areas
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /affiliate/
+Disallow: /shared/
+Disallow: /checkout/
+Disallow: /payment/
+Disallow: /account-settings/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /affiliate/
+Disallow: /shared/
+Disallow: /checkout/
+Disallow: /payment/
+Disallow: /account-settings/
