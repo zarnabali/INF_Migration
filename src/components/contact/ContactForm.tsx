@@ -39,6 +39,7 @@ export const ContactFormComponent = () => {
     const [recaptchaVerified, setRecaptchaVerified] = useState(false);
     const [recaptchaToken, setRecaptchaToken] = useState('');
     const recaptchaWidgetId = useRef<number | null>(null);
+    const recaptchaContainerRef = useRef<HTMLDivElement>(null);
 
     const siteKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Public key from Vue project
 
@@ -63,11 +64,18 @@ export const ContactFormComponent = () => {
         };
 
         const renderRecaptcha = () => {
-            if (!window.grecaptcha || recaptchaWidgetId.current !== null) return;
+            // Check if already rendered in this container
+            const container = recaptchaContainerRef.current;
+            if (!container || container.hasChildNodes()) return;
+
+            if (!window.grecaptcha) return;
 
             window.grecaptcha.ready(() => {
+                // Double check inside ready callback
+                if (!container || container.hasChildNodes()) return;
+
                 try {
-                    const widgetId = window.grecaptcha.render('recaptcha-container', {
+                    const widgetId = window.grecaptcha.render(container, {
                         sitekey: siteKey,
                         callback: (token: string) => {
                             setRecaptchaToken(token);
@@ -251,7 +259,7 @@ export const ContactFormComponent = () => {
                                     <div className="w-full px-2 mt-3">
                                         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                                             {/* ReCAPTCHA Container */}
-                                            <div id="recaptcha-container" className="recaptcha-wrapper"></div>
+                                            <div ref={recaptchaContainerRef} className="recaptcha-wrapper"></div>
 
                                             <button
                                                 type="submit"
